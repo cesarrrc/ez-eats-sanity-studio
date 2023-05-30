@@ -1,12 +1,12 @@
 export default {
   name: "category",
   type: "document",
-  title: "Menu category",
+  title: "Menu Categories",
   fields: [
     {
       name: "name",
       type: "string",
-      title: "Category name",
+      title: "Category Name",
       validation: (Rule) => Rule.required(),
     },
     {
@@ -16,10 +16,10 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "dishes",
+      name: "sub_categories",
       type: "array",
-      title: "Dishes",
-      of: [{ type: "reference", to: [{ type: "dish" }] }],
+      title: "Sub-Categories",
+      of: [{ name: "sub_category", title: "Sub Categories", type: "sub_category" }],
     },
   ],
   preview: {

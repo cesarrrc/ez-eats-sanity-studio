@@ -11,31 +11,24 @@ import hours from "./objects/hours";
 import homePage from "./documents/homePage";
 import aboutPage from "./documents/aboutPage";
 import menuFile from "./objects/menuFile";
+import subCategory from "./objects/subCategory";
+import typeCategory from "./objects/typeCategory";
+import priceBySize from "./objects/priceBySize";
 
 export default createSchema({
   name: "default",
   types: schemaTypes.concat([
-    
-    // documents
     restaurant,
     menuCategory,
     dish,
     homePage,
     aboutPage,
-
-    // objects
     meta,
     address,
     hours,
     menuFile,
+    subCategory,
+    typeCategory,
+    priceBySize,
   ]),
 });
-
-// prepare(selection) {
-//   const { title, subtitle } = selection;
-//   console.log(title, subtitle);
-//   return {
-//     title: title,
-//     subtitle: subtitle,
-//   };
-// },

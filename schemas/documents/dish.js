@@ -21,6 +21,17 @@ export default {
       type: "number",
     },
     {
+      name: "price_by_size",
+      title: "Price by Size?",
+      type: "boolean",
+    },
+    {
+      name: "prices",
+      title: "Prices",
+      type: "array",
+      of: [{ type: "price_by_size_object" }],
+    },
+    {
       name: "image",
       type: "image",
       title: "Image",
@@ -35,7 +46,11 @@ export default {
       options: {
         source: "name",
         slugify: (input) =>
-          input.toLowerCase().replace(/\s+/g, "-").slice(0, 200),
+          input
+            .toLowerCase()
+            .replace(/\s+/g, "-")
+            .replaceAll(",", "")
+            .slice(0, 200),
       },
       validation: (Rule) => Rule.required(),
     },
