@@ -16,6 +16,12 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      title: "Tile Name Hover",
+      name: "tile_name_hover",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
       title: "Tile Image",
       name: "tile_image",
       type: "image",
