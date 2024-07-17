@@ -1,9 +1,9 @@
 import meta from "../objects/meta";
 
 export default {
-  name: "events",
+  name: "recurring_events",
   type: "document",
-  title: "Events",
+  title: "Recurring Events",
   groups: [
     {
       name: "seo",
@@ -13,33 +13,17 @@ export default {
   preview: {
     select: {
       title: "name",
-      date: "event_date",
+      date: "recurring_date",
+      location_name: "location_name",
     },
     prepare(selection) {
-      const { title, date } = selection;
+      const { title, date, location_name } = selection;
       return {
         title: title,
-        subtitle:
-          new Date(date).getMonth() +
-          " / " +
-          new Date(date).getDate() +
-          " / " +
-          new Date(date).getFullYear(), // YYYY-MM-DD --> YYYY
+        subtitle: location_name + " - " + date,
       };
     },
   },
-  orderings: [
-    {
-      title: "Date, New",
-      name: "eventDateDesc",
-      by: [{ field: "event_date", direction: "desc" }],
-    },
-    {
-      title: "Date, Old",
-      name: "eventDateAsc",
-      by: [{ field: "event_date", direction: "asc" }],
-    },
-  ],
   fields: [
     {
       title: "Event Title",
@@ -52,28 +36,14 @@ export default {
       title: "Hidden?",
       name: "hidden",
       type: "boolean",
-      //   group: "event_details",
       initialValue: false,
       validation: (Rule) => Rule.required(),
     },
     {
-      title: "Event Date",
-      name: "event_date",
-      type: "datetime",
-      options: {
-        dateFormat: "YYYY-MM-DD",
-        timeFormat: "HH:mm",
-        // timeStep: 15,
-        // What does this do?
-        // calendarTodayLabel: "Today",
-      },
-    },
-    {
-      title: "Show time?",
-      name: "show_time",
-      type: "boolean",
-      //   group: "event_details",
-      initialValue: false,
+      title: "Recurring Event Date",
+      name: "recurring_date",
+      type: "string",
+      description: "Ex: Every Tuesday",
       validation: (Rule) => Rule.required(),
     },
     {
@@ -105,13 +75,19 @@ export default {
       ],
     },
     {
+      title: "Location Name",
+      name: "location_name",
+      type: "string",
+      description: "The name of the Location/Bar/Venue",
+    },
+    {
       title: "Event Address",
       name: "event_address",
       type: "address",
       //   group: "event_details",
     },
     {
-      title: "Venue Website?",
+      title: "Location Website?",
       name: "website",
       description: "If you have a link to the venue, add it here.",
       type: "string",
